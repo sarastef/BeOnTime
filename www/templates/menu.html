@@ -1,4 +1,6 @@
+<ion-view hide-nav-bar="userLoggedIn">
 <ion-side-menus enable-menu-with-back-views="false">
+  
   <ion-side-menu-content>
     <ion-nav-bar class="bar-energized">
       <ion-nav-back-button>
@@ -9,21 +11,31 @@
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
+
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-energized" ">
-      <img class="photo" src="img/profil.svg"><h2 class="title_menu">Menu</h2>
+
+    <ion-header-bar menu-close  ng-if="!isLogin" class="bar-energized"> 
+      <h2 class="title_menu" >Menu</h2>
     </ion-header-bar>
+
     <ion-content>
-      <ion-list >
-        <ion-item  menu-close ng-click="log()" ng-if="!isLogin" >
+
+      <ion-list class="">
+        
+        <ion-item  menu-close href="#/app/profil" ng-if="isLogin" class="profile-item bar-profile" >
+            <img class="photo" src="img/avatar.jpg">
+            <h2 class="name">Pretty Hate Machine</h2>
+            <p>Voir le profil</p>
+        </ion-item>
+
+        <ion-item  menu-close href="#/app/login" ng-if="!isLogin" class=" conection" >
+           <i class="icon item_picto ion-log-in"></i>
           Se connecter
         </ion-item>
-        <ion-item menu-close  href="#/app/profil" ng-if="isLogin" >
-          Profil
-        </ion-item>
+
         <ion-item menu-close href="#/app/home">
          <img class="item_picto carte" src="img/carte.svg"> Carte
         </ion-item>
@@ -39,7 +51,15 @@
         <ion-item menu-close color="dark" href="#/app/parameter">
          <img class="item_picto params" src="img/params.svg"> Paramètres
         </ion-item>
+        <ion-item  menu-close ng-click="log()" ng-if="isLogin">
+           <i class="icon item_picto ion-log-out "></i>
+          Se déconnecter
+        </ion-item>
+       
       </ion-list>
+
     </ion-content>
   </ion-side-menu>
+
 </ion-side-menus>
+</ion-view>
